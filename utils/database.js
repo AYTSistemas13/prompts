@@ -1,4 +1,3 @@
-import { MongoTopologyClosedError } from "mongodb";
 import mongoose from "mongoose";
 
 let isConnected = false; // Seguimiento de la conexión.

@@ -27,15 +27,43 @@ const Feed = () => {
   const [searchedResults, setSearchedResults] = useState([]);
 
   const fetchPosts = async () => {
-    const response = await fetch("/api/prompt");
+    const response = await fetch("/api/prompt", {
+      method : "GET",
+      headers : {
+        "Cache-Control" : "no-store", // Disable caching
+      },
+    });
     const data = await response.json();
 
     setAllPosts(data);
   };
 
+  /*const fetchPosts = async () => {
+    const response = await fetch("/api/prompt");
+    const data = await response.json();
+
+    setAllPosts(data);
+  };*/
+
   useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await fetch(`/api/prompt?search=${searchText}`, {
+        method : 'GET',
+        headers : {
+          "Cache-Control" : "no-store" // Disable caching
+        }
+      });
+      const data = await response.json();
+
+      setAllPosts(data);
+    }
+
     fetchPosts();
-  }, []);
+  }, [searchText]);
+
+  /*useEffect(() => {
+    fetchPosts();
+  }, []);*/
 
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
