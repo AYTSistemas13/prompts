@@ -10,9 +10,6 @@ const EditPrompt = () => {
     const router = useRouter();
     const { data : session } = useSession();
 
-    if (!session) {
-        router.push('/');
-    }
     const searchParams = useSearchParams();
     const promptId = searchParams.get('id');
     const [submitting, setSubmitting] = useState(false);
@@ -22,6 +19,10 @@ const EditPrompt = () => {
     });
 
     useEffect(() => {
+        if (!session) {
+            router.push('/');
+        }
+        
         const getPromptDetails = async() => {
             const response = await fetch(`/api/prompt/${promptId}`);
             const data = await response.json();
