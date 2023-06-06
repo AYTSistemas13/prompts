@@ -22,7 +22,7 @@ const EditPrompt = () => {
         if (!session) {
             router.push('/');
         }
-        
+
         const getPromptDetails = async() => {
             const response = await fetch(`/api/prompt/${promptId}`);
             const data = await response.json();
@@ -49,6 +49,7 @@ const EditPrompt = () => {
                 method : 'PATCH',
                 body : JSON.stringify({
                     prompt : post.prompt,
+                    plataforma : post.plataforma,
                     tag : post.tag,
                 })
             });
