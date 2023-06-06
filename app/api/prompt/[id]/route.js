@@ -24,6 +24,7 @@ export const PATCH = async( request, { params } ) => {
             return new Response( "No se encontró el Prompt.", { status : 400 } ); 
         }
         existingPrompt.prompt = prompt;
+        existingPrompt.plataforma = plataforma;
         existingPrompt.tag = tag;
         await existingPrompt.save();
         return new Response( JSON.stringify(existingPrompt), { status : 200 } );
