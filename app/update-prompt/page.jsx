@@ -29,6 +29,7 @@ const EditPrompt = () => {
 
             setPost({
                 prompt : data.prompt,
+                plataforma : data.plataforma,
                 tag : data.tag
             });
         }
